@@ -42,7 +42,7 @@ const appts: Record<string, number[]> = {
 const POSSIBLE_TIMES = ["10:00 - 10:30", "10:30 - 11:00", "11:00 - 11:30", "11:30 - 12:00", "12:00 - 12:30", "12:30 - 13:00"];
 
 export default function CalendarPage() {
-  const [userEmail, setUserEmail] = useState("Můj Profil");
+  const [user, setUser] = useState("Můj Profil");
   
   const [date, setDate] = useState<Date | undefined>(undefined);
 
@@ -51,7 +51,7 @@ export default function CalendarPage() {
     useEffect(() => {
         const savedEmail = localStorage.getItem("userEmail");
         if (savedEmail) {
-            setUserEmail(savedEmail);
+            setUser(savedEmail);
         }
     }, []);
 
@@ -70,10 +70,10 @@ export default function CalendarPage() {
   
   return (
     <>
-    <Menu user={userEmail} />
+    <Menu user={user} />
     <div className="flex flex-col w-full items-center justify-center text-lg mt-[4vh] mb-[4vh] gap-10">
         <h2 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
-          Rezervace termínu
+          {user} - Rezervace termínu
         </h2>
         <Calendar
             mode="single"
@@ -84,6 +84,7 @@ export default function CalendarPage() {
             weekStartsOn={1}
             dataAppts={appts}
             maxAppts={6}
+            title="Vyberte den"
         />
         {date && (
           <div 

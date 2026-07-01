@@ -23,11 +23,13 @@ function Calendar({
   components,
   dataAppts = {},
   maxAppts = 6,
+  title,
   ...props
 }: React.ComponentProps<typeof DayPicker> & {
   buttonVariant?: React.ComponentProps<typeof Button>["variant"];
   dataAppts?: Record<string, number[]>;
   maxAppts?: number;
+  title?: React.ReactNode;
 }) {
   const defaultClassNames = getDefaultClassNames()
 
@@ -55,21 +57,21 @@ function Calendar({
         ),
         month: cn("flex w-full flex-col gap-4", defaultClassNames.month),
         nav: cn(
-          "absolute inset-x-0 top-0 flex w-full items-center justify-between gap-1",
+          "size-(--cell-size) absolute inset-x-0 top-0 flex w-full items-center justify-between gap-1 mt-[-5%]",
           defaultClassNames.nav
         ),
         button_previous: cn(
           buttonVariants({ variant: buttonVariant }),
-          "size-(--cell-size) p-0 select-none aria-disabled:opacity-50",
+          "size-[calc(var(--cell-size)-40%)] w-[33%] p-0 select-none aria-disabled:opacity-50",
           defaultClassNames.button_previous
         ),
         button_next: cn(
           buttonVariants({ variant: buttonVariant }),
-          "size-(--cell-size) p-0 select-none aria-disabled:opacity-50",
+          "size-[calc(var(--cell-size)-40%)] w-[33%] p-0 select-none aria-disabled:opacity-50",
           defaultClassNames.button_next
         ),
         month_caption: cn(
-          "flex h-(--cell-size) w-full items-center justify-center px-(--cell-size)",
+          "flex h-full w-full items-center justify-center px-(--cell-size)",
           defaultClassNames.month_caption
         ),
         dropdowns: cn(
@@ -87,14 +89,14 @@ function Calendar({
         caption_label: cn(
           "font-medium select-none",
           captionLayout === "label"
-            ? "text-sm"
+            ? "text-3xl"
             : "flex items-center gap-1 rounded-(--cell-radius) text-sm [&>svg]:size-3.5 [&>svg]:text-muted-foreground",
           defaultClassNames.caption_label
         ),
         month_grid: cn("w-full border-collapse", defaultClassNames.month_grid),
         weekdays: cn("flex", defaultClassNames.weekdays),
         weekday: cn(
-          "flex-1 rounded-(--cell-radius) text-[0.8rem] font-normal text-muted-foreground select-none",
+          "flex-1 rounded-(--cell-radius) text-[1.2rem] font-normal text-muted-foreground select-none",
           defaultClassNames.weekday
         ),
         week: cn("mt-2 flex w-full", defaultClassNames.week),
@@ -138,14 +140,21 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        Root: ({ className, rootRef, ...props }) => {
+        Root: ({ className, rootRef, children, ...props }) => {
           return (
             <div
               data-slot="calendar"
               ref={rootRef}
               className={cn(className)}
               {...props}
-            />
+            >
+              {title && (
+                <p className="text-lg font-semibold text-muted-foreground text-center">
+                  {title}
+                </p>
+              )}
+              {children}
+            </div>
           )
         },
         Chevron: ({ className, orientation, ...props }) => {
