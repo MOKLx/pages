@@ -6,26 +6,30 @@ import {
   ScrollRestoration,
   isRouteErrorResponse,
 } from "react-router"
+import { ThemeProvider } from "next-themes";
 
 import type { Route } from "./+types/root"
 import "./app.css"
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="cs" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
-        {children}
+      <body className="bg-background text-foreground antialiased">
+        { }
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
     </html>
-  )
+  );
 }
 
 export default function App() {

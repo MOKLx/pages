@@ -15,10 +15,13 @@
     "@react-router/serve": "7.15.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "date-fns": "^4.4.0",
     "isbot": "^5",
     "lucide-react": "^1.22.0",
+    "next-themes": "^0.4.6",
     "radix-ui": "^1.6.1",
     "react": "^19.2.6",
+    "react-day-picker": "^10.0.1",
     "react-dom": "^19.2.6",
     "react-router": "7.15.1",
     "shadcn": "^4.12.0",
@@ -36,5 +39,8 @@
     "tailwindcss": "^4",
     "typescript": "^6",
     "vite": "^8"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true
   }
 }
