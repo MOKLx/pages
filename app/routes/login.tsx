@@ -52,7 +52,7 @@ export default function Login() {
     }
   }, [actionData, navigate]);*/
 
-export default function Login() {
+export default function LoginPage() {
   const navigate = useNavigate();
   
   const [step, setStep] = useState<"email" | "code">("email");
@@ -71,6 +71,7 @@ export default function Login() {
     }
 
     if (intent === "login") {
+      localStorage.setItem("userEmail", email);
       navigate("/calendar");
       return;
     }

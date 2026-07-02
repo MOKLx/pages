@@ -6,6 +6,7 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "~/components/ui/navigation-menu";
+import { LogOut } from "lucide-react";
 
 interface MenuProps {
   user?: string;
@@ -32,10 +33,18 @@ export function Menu({ user = "Můj Profil" }: MenuProps) {
         </NavigationMenuItem>
       </NavigationMenuList>
 
-      <NavigationMenuList className="flex items-center gap-2">
+      <NavigationMenuList className="flex items-center">
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link to="/profil">{user}</Link>
+            <Link to="/profile">{user}</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+            <Link to="/">
+              <LogOut size={1} className="text-muted-foreground" />
+            </Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>

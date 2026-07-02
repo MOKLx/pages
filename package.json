@@ -1,9 +1,10 @@
 {
   "name": "puff",
+  "homepage": "https://moklx.github.io/pages",
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "react-router build && copy build\\client\\pages\\index.html build\\client\\pages\\404.html",
+    "build": "react-router build",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
