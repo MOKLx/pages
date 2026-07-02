@@ -16,6 +16,7 @@ import {
   FieldLabel,
 } from "~/components/ui/field"
 
+/*
 export async function action({ request }: { request: Request }) {
   const formData = await request.formData();
   const email = String(formData.get("email") ?? "");
@@ -27,34 +28,53 @@ export async function action({ request }: { request: Request }) {
   }
 
   if (intent === "login") {
-    if (code === "123456") {
-      // ⚠️ Vrátíme úspěch a e-mail zpět klientovi, aby ho mohl uložit
-    }
     return { success: true, email };
-    return { error: "Špatný kód!" };
   }
   return null;
 }
 
+
+
 export default function Login() {
   const actionData = useActionData() as { step?: string; success?: boolean; email?: string; error?: string } | null;
   const navigate = useNavigate();
-  const [step, setStep] = useState<"email" | "code">("email");
+  const [step, setStep] = useState<"email" | "code" | "forward">("email");
   
 
-  // Sledujeme odpověď ze serveru
   useEffect(() => {
     if (actionData?.step === "code") {
       setStep("code");
     }
     
-    // ⚠️ KLÍČOVÝ MOMENT: Pokud server potvrdil úspěch, bezpečně uložíme e-mail v prohlížeči
     if (actionData?.success && actionData?.email) {
       localStorage.setItem("userEmail", actionData.email);
-      // A teprve POTÉ uživatele přesměrujeme na kalendář
       navigate("/calendar");
     }
-  }, [actionData, navigate]);
+  }, [actionData, navigate]);*/
+
+export default function Login() {
+  const navigate = useNavigate();
+  
+  const [step, setStep] = useState<"email" | "code">("email");
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    
+    const submitter = (e.nativeEvent as SubmitEvent).submitter as HTMLButtonElement | null;
+    const intent = submitter?.value;
+
+    if (intent === "send-code") {
+      setStep("code");
+      return;
+    }
+
+    if (intent === "login") {
+      navigate("/calendar");
+      return;
+    }
+  }
 
   return (
     <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
@@ -72,7 +92,7 @@ export default function Login() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Form method="post">
+              <Form /*method="post"*/ onSubmit={handleSubmit}>
                 <FieldGroup>
                   <Field>
                     <div className="flex items-center">
@@ -94,7 +114,9 @@ export default function Login() {
                       type="text"
                       placeholder="jmeno@domena.cz"
                       required
-                      defaultValue={actionData?.email ?? ""}
+                      onChange={(e) => setEmail(e.target.value)} //
+                      value={email} //
+                      //defaultValue={actionData?.email ?? ""}
                       readOnly={step === "code"} 
                       className={step === "code" ? "bg-muted text-muted-foreground cursor-not-allowed" : ""}
                     />
@@ -110,6 +132,7 @@ export default function Login() {
                       name="code"
                       type="text"
                       placeholder="123456"
+                      onChange={(e) => setCode(e.target.value)} //
                       required
                       maxLength={6}
                       autoFocus />

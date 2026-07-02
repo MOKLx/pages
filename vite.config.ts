@@ -3,8 +3,6 @@ import tailwindcss from "@tailwindcss/vite"
 import { defineConfig } from "vite"
 import path from "path"
 
-
-
 export default defineConfig({
   base: '/pages/',
   plugins: [tailwindcss(), reactRouter()],
