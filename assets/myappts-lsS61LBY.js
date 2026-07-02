@@ -1,1 +1,0 @@
-import{A as e,t}from"./jsx-runtime-CRmImTOK.js";import{t as n}from"./menu-B_-MLmly.js";var r=t(),i=e(function(){return(0,r.jsx)(n,{})});export{i as default};
