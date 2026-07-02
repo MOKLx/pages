@@ -15,6 +15,7 @@ import {
   FieldGroup,
   FieldLabel,
 } from "~/components/ui/field"
+import { basePath } from "../../vite.config"
 
 /*
 export async function action({ request }: { request: Request }) {
@@ -72,7 +73,7 @@ export default function LoginPage() {
 
     if (intent === "login") {
       localStorage.setItem("userEmail", email);
-      navigate("/calendar");
+      navigate(basePath + "/calendar");
       return;
     }
   }

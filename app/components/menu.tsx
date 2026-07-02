@@ -7,6 +7,7 @@ import {
   navigationMenuTriggerStyle,
 } from "~/components/ui/navigation-menu";
 import { LogOut } from "lucide-react";
+import { basePath } from "../../vite.config"
 
 interface MenuProps {
   user?: string;
@@ -22,13 +23,13 @@ export function Menu({ user = "Můj Profil" }: MenuProps) {
       <NavigationMenuList className="flex items-center gap-2">
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link to="/calendar">Kalendář</Link>
+            <Link to={basePath + "/calendar"}>Kalendář</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
 
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link to="/myappts">Mé termíny</Link>
+            <Link to={basePath + "/myappts"}>Mé termíny</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
@@ -36,13 +37,13 @@ export function Menu({ user = "Můj Profil" }: MenuProps) {
       <NavigationMenuList className="flex items-center">
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link to="/profile">{user}</Link>
+            <Link to={basePath + "/profile"}>{user}</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
 
         <NavigationMenuItem>
           <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link to="/">
+            <Link to={basePath + "/"}>
               <LogOut size={1} className="text-muted-foreground" />
             </Link>
           </NavigationMenuLink>

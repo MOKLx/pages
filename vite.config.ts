@@ -3,8 +3,10 @@ import tailwindcss from "@tailwindcss/vite"
 import { defineConfig } from "vite"
 import path from "path"
 
+export const basePath: string = "pages/";
+
 export default defineConfig({
-  base: '/pages',
+  base: '/' + basePath,
   plugins: [tailwindcss(), reactRouter()],
   define: {
     "process.env.ROUTER_BASENAME": JSON.stringify("/pages"),
@@ -16,3 +18,4 @@ export default defineConfig({
     },
   },
 })
+
