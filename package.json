@@ -3,13 +3,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "react-router build && copy build\\client\\index.html build\\client\\404.html",
+    "build": "react-router build && copy build\\client\\pages\\index.html build\\client\\pages\\404.html",
     "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build/client"
+    "deploy": "npx gh-pages -d build/client"
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.2.9",

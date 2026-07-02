@@ -6,6 +6,9 @@ import path from "path"
 export default defineConfig({
   base: '/pages/',
   plugins: [tailwindcss(), reactRouter()],
+  define: {
+    "process.env.ROUTER_BASENAME": JSON.stringify("/pages"),
+  },
   resolve: { 
     tsconfigPaths: true,
     alias: {
